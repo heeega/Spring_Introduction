@@ -1,5 +1,6 @@
 package hello.hello_spring;
 
+import hello.hello_spring.aop.TimeTraceAop;
 import hello.hello_spring.repository.*;
 import hello.hello_spring.service.MemberService;
 import jakarta.persistence.EntityManager;
@@ -19,6 +20,16 @@ public class SpringConfig {
         this.memberRepository = memberRepository;
     }
 
+    @Bean
+    public MemberService memberService(){
+        return new MemberService(memberRepository);
+
+    }
+
+//    @Bean
+//    public TimeTraceAop timeTraceAop(){
+//        return new TimeTraceAop();
+//    }
 
     // DB 변경시 return 값만 변경해주면 됨
 //    @Bean
@@ -30,13 +41,5 @@ public class SpringConfig {
 
 //    }
 
-
-
-
-    @Bean
-    public MemberService memberService(){
-        return new MemberService(memberRepository);
-
-    }
 
 }
